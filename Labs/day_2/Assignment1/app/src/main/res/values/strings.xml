@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Assignment1</string>
+    <string name="Mobile_Num">Mobile Number</string>
+    <string name="Message">Message</string>
+    <string name="numbers">0123456789</string>
+    <string name="bback">Back</string>
+    <string name="bNext">Next</string>
+    <string name="bExit">Exit</string>
+</resources>

@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Assignment2</string>
+    <string name="first_row">row one</string>
+    <string name="second_row" />
+    <string name="second_ro">row two</string>
+    <string name="third_row">row three</string>
+    <string name="fourth_row">row four</string>
+    <string name="red">red</string>
+    <string name="green">green</string>
+    <string name="blue">blue</string>
+    <string name="yellow">yellow</string>
+</resources>
