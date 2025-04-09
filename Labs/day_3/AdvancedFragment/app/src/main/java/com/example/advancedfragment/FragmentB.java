@@ -15,8 +15,9 @@ public class FragmentB extends Fragment
     TextView text ;
     public void changeData(int data)
     {
-         text.setText(String.valueOf(data));
-
+        if(text != null) {
+            text.setText(String.valueOf(data));
+        }
     }
 
     @Override

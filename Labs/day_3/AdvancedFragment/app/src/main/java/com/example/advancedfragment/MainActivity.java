@@ -18,43 +18,21 @@ public class MainActivity extends AppCompatActivity implements Communicator {
     FragmentManager manger ;
     FragmentA newFragA ;
     FragmentB newFragB ;
-    int counter = 0 ;
 
-    public void increment()
-    {
-        counter++ ;
-    }
+
 
     @Override
-    public void respond() {
-        this.increment();
+    public void respond(int data) {
+
 
         FragmentB f2 = (FragmentB) manger.findFragmentByTag("display");
         if(f2 != null) {
-            f2.changeData(counter);
-        }
-    }
-    private void restore()
-    {
-        FragmentB f2 = (FragmentB) manger.findFragmentByTag("display");
-        if(f2 != null) {
-            f2.changeData(counter);
+            f2.changeData(data);
         }
     }
 
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("counter",counter);
-    }
 
-    @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        counter =savedInstanceState.getInt("counter");
 
-        this.restore();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

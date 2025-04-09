@@ -15,6 +15,15 @@ public class FragmentA extends Fragment
     Button btn ;
     private Communicator  myCom ;
 
+    int data = 0 ;
+    private Bundle outState;
+
+    public void increment()
+    {
+        data++ ;
+    }
+
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +31,12 @@ public class FragmentA extends Fragment
 
     }
 
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("counter", data);
+    }
 
 
     @Nullable
@@ -33,20 +48,27 @@ public class FragmentA extends Fragment
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         myCom = (Communicator) getActivity();
+
+        if(savedInstanceState != null) {
+
+            data = savedInstanceState.getInt("counter");
+            myCom.respond(data);
+
+        }
+
 
         btn = view.findViewById(R.id.button);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myCom.respond();
+                data++;
+                myCom.respond(data);
             }
         });
     }
-    @Override
-    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-    }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -55,6 +77,9 @@ public class FragmentA extends Fragment
     @Override
     public void onResume() {
         super.onResume();
+
+        myCom.respond(data);
+
     }
 
     @Override
@@ -65,11 +90,6 @@ public class FragmentA extends Fragment
     @Override
     public void onStop() {
         super.onStop();
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
     }
 
     @Override
