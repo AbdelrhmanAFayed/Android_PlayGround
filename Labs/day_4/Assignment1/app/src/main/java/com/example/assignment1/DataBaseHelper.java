@@ -8,20 +8,20 @@ import androidx.annotation.Nullable;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VER = 1 ;
+    public static final int DATABASE_VER = 1 ;
 
-    private static final String DATABASE_NAME = "my.db" ;
-    private static final String MY_TABLE_NAME = "messages" ;
+    public static final String DATABASE_NAME = "my.db" ;
+    public static final String MY_TABLE_NAME = "messages" ;
 
-    private static final String NUMBER = "number" ;
-    private static final String MESSAGE = "message" ;
-    private static final String TEXT = "TEXT" ;
-    private static final String SPACE = " "  ;
-    private static final String RIGHT_BRACKET = "(" ;
-    private static final String LEFT_BRACKET = ")" ;
-    private static final String semicolon = ";";
+    public static final String NUMBER = "number" ;
+    public static final String MESSAGE = "message" ;
+    public static final String TEXT = "TEXT" ;
+    public static final String SPACE = " "  ;
+    public static final String RIGHT_BRACKET = "(" ;
+    public static final String LEFT_BRACKET = ")" ;
+    public static final String semicolon = ";";
 
-    private static final String CREATE_USER_MESSAGE_TABLE = "CREATE TABLE" + SPACE + MY_TABLE_NAME + SPACE + RIGHT_BRACKET + NUMBER + SPACE + MESSAGE + SPACE + TEXT + LEFT_BRACKET + semicolon ;
+    public static final String CREATE_USER_MESSAGE_TABLE = "CREATE TABLE" + SPACE + MY_TABLE_NAME + SPACE + RIGHT_BRACKET + NUMBER + SPACE + TEXT + SPACE + "PRIMARY KEY" + SPACE + MESSAGE + LEFT_BRACKET + semicolon ;
 
 
 
@@ -33,7 +33,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        db.execSQL(CREATE_USER_MESSAGE_TABLE);
     }
 
     @Override

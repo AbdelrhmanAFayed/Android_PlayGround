@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,9 @@ public class SecondActivity extends AppCompatActivity {
     Button btnWIS ;
     Button btnRIS ;
 
+    Button btnWDB ;
+    Button btnRDB ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +56,8 @@ public class SecondActivity extends AppCompatActivity {
         btnRSH = findViewById(R.id.btnRSH);
         btnWIS = findViewById(R.id.btnWIS);
         btnRIS = findViewById(R.id.btnRIS);
+        btnWDB = findViewById(R.id.btnWDB);
+        btnRDB = findViewById(R.id.btnRDB);
 
         Intent incomingIntent = getIntent();
         String mobile = incomingIntent.getStringExtra("MOBILE_NUMBER");
@@ -135,6 +141,29 @@ public class SecondActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     Toast.makeText(SecondActivity.this,"IO Error",Toast.LENGTH_LONG).show();
                 }
+
+            }
+        });
+
+        btnWDB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            MessageAdapter adapt = new MessageAdapter(SecondActivity.this);
+
+            adapt.insertMessage(new Message((txtMobile.getText().toString()),txtMessage.getText().toString()));
+                txtMobile.setText("");
+                txtMessage.setText("");
+
+            }
+        });
+
+        btnRDB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MessageAdapter adapt = new MessageAdapter(SecondActivity.this);
+
+
+
 
             }
         });
