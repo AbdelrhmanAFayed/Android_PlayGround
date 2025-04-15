@@ -43,8 +43,10 @@ public class MessageAdapter
         if(result != null)
         {
             result.moveToNext();
-            msg = new Message(result.getString(0),result.getString(1));
+            msg = new Message(result.getString(1),result.getString(0));
         }
+
+        result.close();
 
             return msg ;
     }

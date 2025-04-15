@@ -30,6 +30,8 @@ public class SecondActivity extends AppCompatActivity {
     private static final String PREF_FILE = "PREF_FILE" ;
     private static final String PRIV_FILE = "PRIV_FILE";
 
+    String phone = "";
+
 
     TextView txtMobile   ;
     TextView txtMessage  ;
@@ -148,12 +150,16 @@ public class SecondActivity extends AppCompatActivity {
         btnWDB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            MessageAdapter adapt = new MessageAdapter(SecondActivity.this);
+                MessageAdapter adapt = new MessageAdapter(SecondActivity.this);
 
-            adapt.insertMessage(new Message((txtMobile.getText().toString()),txtMessage.getText().toString()));
+                String inputMobile = txtMobile.getText().toString();
+                String inputMessage = txtMessage.getText().toString();
+
+                adapt.insertMessage(new Message(inputMessage, inputMobile));
+                phone = inputMobile; // save for later read
+
                 txtMobile.setText("");
                 txtMessage.setText("");
-
             }
         });
 
@@ -162,11 +168,22 @@ public class SecondActivity extends AppCompatActivity {
             public void onClick(View v) {
                 MessageAdapter adapt = new MessageAdapter(SecondActivity.this);
 
+                if (!phone.isEmpty()) {
+                    Message msg = adapt.findMessage(phone);
 
-
-
+                    if (msg != null) {
+                        txtMessage.setText(msg.getMessage());
+                        txtMobile.setText(msg.getMobile());
+                    } else {
+                        txtMessage.setText("Not found");
+                        Toast.makeText(SecondActivity.this, "Unable to read", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(SecondActivity.this, "No saved phone number", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
 
 
     }
